@@ -143,7 +143,8 @@
       "properties": {
         "annotations": {
           "description": "Ingress annotations",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "enabled": {
           "description": "If true, an Ingress is created",
@@ -155,7 +156,8 @@
         },
         "labels": {
           "description": "Additional Ingress labels",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "rules": {
           "description": "List of Ingress rules",
@@ -344,7 +346,8 @@
     },
     "podAnnotations": {
       "description": "Additional pod annotations",
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true
     },
     "podDisruptionBudget": {
       "description": "Pod disruption budget configuration to ensure high availability during cluster updates",
@@ -352,7 +355,8 @@
     },
     "podLabels": {
       "description": "Additional pod labels",
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true
     },
     "podManagementPolicy": {
       "description": "Pod management policy. One of `Parallel` or `OrderedReady`",
@@ -563,7 +567,8 @@
       "properties": {
         "annotations": {
           "description": "Annotations for headless and HTTP Services",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "extraPorts": {
           "description": "Additional Service ports, e. g. for custom admin console",
@@ -637,7 +642,8 @@
         },
         "labels": {
           "description": "Additional labels for headless and HTTP Services",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "nodePort": {
           "anyOf": [
@@ -677,7 +683,8 @@
       "properties": {
         "annotations": {
           "description": "Additional annotations for the ServiceAccount",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "create": {
           "description": "Specifies whether a ServiceAccount should be created",
@@ -689,7 +696,8 @@
         },
         "labels": {
           "description": "Additional labels for the ServiceAccount",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": true
         },
         "name": {
           "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
@@ -740,11 +748,13 @@
     },
     "statefulsetAnnotations": {
       "description": "Annotations for the StatefulSet",
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true
     },
     "statefulsetLabels": {
       "description": "Additional labels for the StatefulSet",
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true
     },
     "terminationGracePeriodSeconds": {
       "description": "Termination grace period in seconds for Keycloak shutdown. Clusters with a large cache might need to extend this to give Infinispan more time to rebalance",
