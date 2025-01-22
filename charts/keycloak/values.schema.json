@@ -41,36 +41,49 @@
   },
   "properties": {
     "affinity": {
+      "description": "Pod affinity configuration. Can be templated",
       "type": "string"
     },
     "args": {
-      "type": "array"
+      "description": "Overrides the default args for the Keycloak container",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "clusterDomain": {
+      "description": "The internal Kubernetes cluster domain",
       "type": "string"
     },
     "command": {
+      "description": "Overrides the default entrypoint of the Keycloak container",
       "type": "array",
       "items": {
         "type": "string"
       }
     },
     "enableServiceLinks": {
+      "description": "Indicates whether information about services should be injected into Pod's environment variables, matching the syntax of Docker links",
       "type": "boolean"
     },
     "extraContainers": {
+      "description": "Additional sidecar containers, e. g. for a database proxy, such as Google's cloudsql-proxy",
       "type": "string"
     },
     "extraEnv": {
+      "description": "Additional environment variables for Keycloak. Values can be templated",
       "type": "string"
     },
     "extraEnvFrom": {
+      "description": "Additional environment variables for Keycloak mapped from a Secret or ConfigMap. Values can be templated",
       "type": "string"
     },
     "extraInitContainers": {
+      "description": "Additional init containers, e. g. for providing custom themes",
       "type": "string"
     },
     "extraPorts": {
+      "description": "Add additional ports, e. g. for admin console or exposing JGroups ports",
       "type": "array",
       "items": {
         "type": "object",
@@ -88,15 +101,19 @@
       }
     },
     "extraVolumeMounts": {
+      "description": "Add additional volumes mounts, e. g. for custom themes. Values can be templated",
       "type": "string"
     },
     "extraVolumes": {
+      "description": "Add additional volumes, e. g. for custom themes. Values can be templated",
       "type": "string"
     },
     "fullnameOverride": {
+      "description": "Optionally override the fully qualified name",
       "type": "string"
     },
     "hostAliases": {
+      "description": "Mapping between IPs and hostnames that will be injected as entries in the Pod's hosts files",
       "type": "array",
       "items": {
         "type": "object",
@@ -114,43 +131,54 @@
       }
     },
     "image": {
+      "description": "Keycloak image configuration",
       "$ref": "#/definitions/image"
     },
     "imagePullSecrets": {
+      "description": "Image pull secrets for the Pod",
       "$ref": "#/definitions/imagePullSecrets"
     },
     "ingress": {
       "type": "object",
       "properties": {
         "annotations": {
+          "description": "Ingress annotations",
           "type": "object"
         },
         "enabled": {
+          "description": "If true, an Ingress is created",
           "type": "boolean"
         },
         "ingressClassName": {
+          "description": "The name of the Ingress Class associated with the ingress",
           "type": "string"
         },
         "labels": {
+          "description": "Additional Ingress labels",
           "type": "object"
         },
         "rules": {
+          "description": "List of Ingress rules",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "host": {
+                "description": "Host for the Ingress rule",
                 "type": "string"
               },
               "paths": {
+                "description": "Paths for the Ingress rule",
                 "type": "array",
                 "items": {
                   "type": "object",
                   "properties": {
                     "path": {
+                      "description": "Path for the Ingress rule",
                       "type": "string"
                     },
                     "pathType": {
+                      "description": "Path Type for the Ingress rule",
                       "type": "string"
                     }
                   }
@@ -160,6 +188,7 @@
           }
         },
         "servicePort": {
+          "description": "The Service port targeted by the Ingress",
           "anyOf": [
             {
               "type": "integer"
@@ -170,45 +199,55 @@
           ]
         },
         "tls": {
+          "description": "TLS configuration",
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "hosts": {
+                "description": "List of TLS hosts",
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
               "secretName": {
+                "description": "Name of the TLS secret",
                 "type": "string"
               }
             }
           }
         },
         "console": {
+          "description": "Configuration for console ingress",
           "type": "object",
           "properties": {
             "enabled": {
+              "description": "If true, an Ingress for the console is created",
               "type": "boolean"
             },
             "rules": {
+              "description": "List of Ingress rules for the console",
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
                   "host": {
+                    "description": "Host for the Ingress rule for the console",
                     "type": "string"
                   },
                   "paths": {
+                    "description": "Paths for the Ingress rule for the console",
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
                         "path": {
+                          "description": "Path for the Ingress rule for the console",
                           "type": "string"
                         },
                         "pathType": {
+                          "description": "Path Type for the Ingress rule for the console",
                           "type": "string"
                         }
                       }
@@ -218,20 +257,24 @@
               }
             },
             "ingressClassName": {
+              "description": "The name of the Ingress Class associated with the console ingress",
               "type": "string"
             },
             "tls": {
+              "description": "TLS configuration for console ingress",
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
                   "hosts": {
+                    "description": "List of TLS hosts for console ingress",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "secretName": {
+                    "description": "Name of the TLS secret for console ingress",
                     "type": "string"
                   }
                 }
@@ -242,24 +285,31 @@
       }
     },
     "lifecycleHooks": {
+      "description": "Lifecycle hooks for the Keycloak container",
       "type": "string"
     },
     "livenessProbe": {
+      "description": "Liveness probe configuration for checking if the container is alive",
       "type": "string"
     },
     "nameOverride": {
+      "description": "Optionally override the name",
       "type": "string"
     },
     "nodeSelector": {
+      "description": "Node labels for pod assignment",
       "type": "object"
     },
     "pgchecker": {
+      "description": "PostgreSQL checker configuration",
       "type": "object",
       "properties": {
         "image": {
+          "description": "Docker image used to check PostgreSQL readiness at startup",
           "$ref": "#/definitions/image"
         },
         "resources": {
+          "description": "Resource requests and limits for the pgchecker container",
           "type": "object",
           "properties": {
             "limits": {
@@ -287,163 +337,212 @@
           }
         },
         "securityContext": {
+          "description": "SecurityContext for the pgchecker container",
           "type": "object"
         }
       }
     },
     "podAnnotations": {
+      "description": "Additional pod annotations",
       "type": "object"
     },
     "podDisruptionBudget": {
+      "description": "Pod disruption budget configuration to ensure high availability during cluster updates",
       "type": "object"
     },
     "podLabels": {
+      "description": "Additional pod labels",
       "type": "object"
     },
     "podManagementPolicy": {
+      "description": "Pod management policy. One of `Parallel` or `OrderedReady`",
       "type": "string"
     },
     "updateStrategy": {
+      "description": "StatefulSet update strategy. One of `RollingUpdate` or `OnDelete`",
       "type": "string"
     },
     "podSecurityContext": {
+      "description": "SecurityContext for the entire Pod. Every container running in the Pod will inherit this SecurityContext. This might be relevant when other components of the environment inject additional containers into running Pods (service meshes are the most prominent example for this)",
       "type": "object"
     },
     "postgresql": {
+      "description": "PostgreSQL database configuration",
       "type": "object",
       "properties": {
         "enabled": {
+          "description": "If true, the PostgreSQL dependency is enabled",
           "type": "boolean"
         },
         "postgresqlUsername": {
+          "description": "PostgreSQL User to create",
           "type": "string"
         },
         "postgresqlPassword": {
+          "description": "PostgreSQL Password for the new user",
           "type": "string"
         },
         "postgresqlDatabase": {
+          "description": "PostgreSQL Database to create",
           "type": "string"
         }
       }
     },
     "priorityClassName": {
+      "description": "Pod priority class name",
       "type": "string"
     },
     "prometheusRule": {
+      "description": "PrometheusRule configuration for the prometheus-operator",
       "type": "object",
       "properties": {
+        "enabled": {
+          "description": "If true, a PrometheusRule resource for the prometheus-operator is created",
+          "type": "boolean"
+        },
         "rules": {
+          "description": "List of rules for Prometheus",
           "type": "array",
           "items": {
             "type": "object"
           }
-        },
-        "enabled": {
-          "type": "boolean"
         }
       }
     },
     "serviceMonitor": {
+      "description": "ServiceMonitor configuration for the prometheus-operator",
       "type": "object",
       "properties": {
+        "enabled": {
+          "description": "If true, a ServiceMonitor resource for the prometheus-operator is created",
+          "type": "boolean"
+        },
         "namespace": {
+          "description": "Optionally sets a target namespace in which to deploy the ServiceMonitor resource",
           "type": "string"
         },
         "namespaceSelector": {
-          "type": "object"
-        },
-        "interval": {
-          "type": "string"
-        },
-        "scrapeTimeout": {
-          "type": "string"
-        },
-        "path": {
-          "type": "string"
-        },
-        "port": {
-          "type": "string"
-        },
-        "labels": {
+          "description": "Optionally sets a namespace selector for the ServiceMonitor",
           "type": "object"
         },
         "annotations": {
+          "description": "Annotations for the ServiceMonitor",
           "type": "object"
         },
-        "enabled": {
-          "type": "boolean"
+        "labels": {
+          "description": "Additional labels for the ServiceMonitor",
+          "type": "object"
+        },
+        "interval": {
+          "description": "Interval at which Prometheus scrapes metrics",
+          "type": "string"
+        },
+        "scrapeTimeout": {
+          "description": "Timeout for scraping",
+          "type": "string"
+        },
+        "path": {
+          "description": "The path at which metrics are served",
+          "type": "string"
+        },
+        "port": {
+          "description": "The Service port at which metrics are served",
+          "type": "string"
         }
       }
     },
     "extraServiceMonitor": {
+      "description": "Additional ServiceMonitor configuration for the prometheus-operator",
       "type": "object",
       "properties": {
+        "enabled": {
+          "description": "If true, an additional ServiceMonitor resource for the prometheus-operator is created",
+          "type": "boolean"
+        },
         "namespace": {
+          "description": "Optionally sets a target namespace in which to deploy the additional ServiceMonitor resource",
           "type": "string"
         },
         "namespaceSelector": {
-          "type": "object"
-        },
-        "interval": {
-          "type": "string"
-        },
-        "scrapeTimeout": {
-          "type": "string"
-        },
-        "path": {
-          "type": "string"
-        },
-        "port": {
-          "type": "string"
-        },
-        "labels": {
+          "description": "Optionally sets a namespace selector for the additional ServiceMonitor",
           "type": "object"
         },
         "annotations": {
+          "description": "Annotations for the additional ServiceMonitor",
           "type": "object"
         },
-        "enabled": {
-          "type": "boolean"
+        "labels": {
+          "description": "Additional labels for the additional ServiceMonitor",
+          "type": "object"
+        },
+        "interval": {
+          "description": "Interval at which Prometheus scrapes metrics",
+          "type": "string"
+        },
+        "scrapeTimeout": {
+          "description": "Timeout for scraping",
+          "type": "string"
+        },
+        "path": {
+          "description": "The path at which metrics are served",
+          "type": "string"
+        },
+        "port": {
+          "description": "The Service port at which metrics are served",
+          "type": "string"
         }
       }
     },
     "readinessProbe": {
+      "description": "Readiness probe configuration for checking if the container is ready to handle requests",
       "type": "string"
     },
     "replicas": {
+      "description": "The number of replicas to create",
       "type": "integer"
     },
     "resources": {
+      "description": "Pod resource requests and limits",
       "type": "object"
     },
     "restartPolicy": {
+      "description": "Pod restart policy. One of `Always`, `OnFailure`, or `Never`",
       "type": "string"
     },
     "route": {
+      "description": "OpenShift Route configuration",
       "type": "object",
       "properties": {
-        "annotations": {
-          "type": "object"
-        },
         "enabled": {
+          "description": "If true, an OpenShift Route is created",
           "type": "boolean"
         },
-        "host": {
+        "path": {
+          "description": "Path for the Route",
           "type": "string"
         },
-        "labels": {
+        "annotations": {
+          "description": "Route annotations",
           "type": "object"
         },
-        "path": {
+        "labels": {
+          "description": "Additional Route labels",
+          "type": "object"
+        },
+        "host": {
+          "description": "Host name for the Route",
           "type": "string"
         },
         "tls": {
+          "description": "TLS configuration for Route",
           "type": "object",
           "properties": {
             "insecureEdgeTerminationPolicy": {
+              "description": "Insecure edge termination policy of the Route. Can be None, Redirect, or Allow",
               "type": "string"
             },
             "termination": {
+              "description": "TLS termination of the route. Can be edge, passthrough, or reencrypt",
               "type": "string"
             }
           }
@@ -451,24 +550,48 @@
       }
     },
     "secrets": {
+      "description": "Configuration for secrets that should be created",
       "type": "object"
     },
     "securityContext": {
+      "description": "SecurityContext for the Keycloak container",
       "type": "object"
     },
     "service": {
+      "description": "Service configuration",
       "type": "object",
       "properties": {
         "annotations": {
+          "description": "Annotations for headless and HTTP Services",
           "type": "object"
         },
         "extraPorts": {
-          "type": "array"
+          "description": "Additional Service ports, e. g. for custom admin console",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "targetPort": {
+                "type": "integer"
+              }
+            }
+          }
         },
         "loadBalancerSourceRanges": {
-          "type": "array"
+          "description": "Optional List of allowed source ranges (CIDRs). Used for service of type LoadBalancer only",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "httpNodePort": {
+          "description": "The HTTP Service node port if type is NodePort",
           "anyOf": [
             {
               "type": "integer"
@@ -479,9 +602,11 @@
           ]
         },
         "httpPort": {
+          "description": "The http Service port",
           "type": "integer"
         },
         "httpsNodePort": {
+          "description": "The HTTPS Service node port if type is NodePort",
           "anyOf": [
             {
               "type": "integer"
@@ -492,9 +617,11 @@
           ]
         },
         "httpsPort": {
+          "description": "The HTTPS Service port",
           "type": "integer"
         },
         "httpManagementNodePort": {
+          "description": "The WildFly management node port if type is NodePort",
           "anyOf": [
             {
               "type": "integer"
@@ -505,9 +632,11 @@
           ]
         },
         "httpManagementPort": {
+          "description": "The WildFly management Service port",
           "type": "integer"
         },
         "labels": {
+          "description": "Additional labels for headless and HTTP Services",
           "type": "object"
         },
         "nodePort": {
@@ -521,49 +650,63 @@
           ]
         },
         "type": {
+          "description": "The Service type",
           "type": "string"
         },
         "loadBalancerIP": {
+          "description": "Optional IP for the load balancer. Used for services of type LoadBalancer only",
           "type": "string"
         },
         "sessionAffinity": {
+          "description": "sessionAffinity for Service, e. g. \"ClientIP\"",
           "type": "string"
         },
         "sessionAffinityConfig": {
+          "description": "sessionAffinityConfig for Service",
           "type": "object"
         },
         "externalTrafficPolicy": {
+          "description": "Optional external traffic policy. Used for services of type LoadBalancer only",
           "type": "string"
         }
       }
     },
     "serviceAccount": {
+      "description": "Service account configuration",
       "type": "object",
       "properties": {
         "annotations": {
+          "description": "Additional annotations for the ServiceAccount",
           "type": "object"
         },
         "create": {
+          "description": "Specifies whether a ServiceAccount should be created",
           "type": "boolean"
         },
         "imagePullSecrets": {
+          "description": "Image pull secrets that are attached to the ServiceAccount",
           "$ref": "#/definitions/imagePullSecrets"
         },
         "labels": {
+          "description": "Additional labels for the ServiceAccount",
           "type": "object"
         },
         "name": {
+          "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
           "type": "string"
         }
       }
     },
     "rbac": {
+      "description": "RBAC configuration",
       "type": "object",
       "properties": {
         "create": {
+          "description": "Specifies whether RBAC resources are to be created",
           "type": "boolean"
         },
         "rules": {
+          "description": "Custom RBAC rules, e. g. for KUBE_PING",
           "type": "array",
           "items": {
             "type": "object",
@@ -592,53 +735,71 @@
       }
     },
     "startupScripts": {
+      "description": "Startup scripts to run before Keycloak starts up",
       "type": "object"
     },
     "statefulsetAnnotations": {
+      "description": "Annotations for the StatefulSet",
       "type": "object"
     },
     "statefulsetLabels": {
+      "description": "Additional labels for the StatefulSet",
       "type": "object"
     },
     "terminationGracePeriodSeconds": {
+      "description": "Termination grace period in seconds for Keycloak shutdown. Clusters with a large cache might need to extend this to give Infinispan more time to rebalance",
       "type": "integer"
     },
     "autoscaling": {
+      "description": "HorizontalPodAutoscaler configuration",
       "type": "object",
       "properties": {
         "enabled": {
+          "description": "Enable creation of a HorizontalPodAutoscaler resource",
           "type": "boolean"
         },
         "labels": {
+          "description": "Additional labels for the HorizontalPodAutoscaler resource",
           "type": "object"
         },
         "minReplicas": {
+          "description": "The minimum number of Pods when autoscaling is enabled",
           "type": "integer"
         },
         "maxReplicas": {
+          "description": "The maximum number of Pods when autoscaling is enabled",
           "type": "integer"
         },
         "metrics": {
+          "description": "The metrics configuration for the HorizontalPodAutoscaler",
           "type": "array",
           "items": {
             "type": "object"
           }
         },
         "behavior": {
+          "description": "The scaling policy configuration for the HorizontalPodAutoscaler",
           "type": "object"
         }
       }
     },
     "tolerations": {
-      "type": "array"
+      "description": "Node taints to tolerate",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
     },
     "networkPolicy": {
+      "description": "NetworkPolicy configuration",
       "type": "object",
       "properties": {
         "enabled": {
+          "description": "If true, the ingress network policy is deployed",
           "type": "boolean"
         },
         "extraFrom": {
+          "description": "Allows to define allowed external traffic",
           "type": "array",
           "items": {
             "type": "object"
@@ -647,39 +808,74 @@
       }
     },
     "topologySpreadConstraints": {
+      "description": "Topology spread constraints for pod distribution across your cluster among failure-domains",
       "type": "array",
       "items": {
         "type": "object"
       }
     },
     "skipInitContainers": {
+      "description": "Skip all init containers (to avoid issues with service meshes which require sidecar proxies for connectivity)",
       "type": "boolean"
     },
     "startupProbe": {
+      "description": "Startup probe configuration for checking when the application within the container has started",
       "type": "object",
       "properties": {
         "httpGet": {
           "type": "object",
           "properties": {
             "path": {
+              "description": "HTTP path to check for application startup",
               "type": "string"
             },
             "port": {
+              "description": "Port to use for startup probe checks",
               "type": "string"
             }
           }
         },
         "initialDelaySeconds": {
+          "description": "Initial delay before startup probe begins",
           "type": "integer"
         },
         "timeoutSeconds": {
+          "description": "Timeout for startup probe",
           "type": "integer"
         },
         "failureThreshold": {
+          "description": "Number of times the probe can fail before giving up",
           "type": "integer"
         },
         "periodSeconds": {
+          "description": "How often to perform the startup probe",
           "type": "integer"
+        }
+      }
+    },
+    "test": {
+      "description": "Test configuration",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "If true, test resources are created",
+          "type": "boolean"
+        },
+        "image": {
+          "description": "The image configuration for the test Pod",
+          "$ref": "#/definitions/image"
+        },
+        "podSecurityContext": {
+          "description": "SecurityContext for the entire test Pod",
+          "type": "object"
+        },
+        "securityContext": {
+          "description": "SecurityContext for the test container",
+          "type": "object"
+        },
+        "deletionPolicy": {
+          "description": "helm.sh/hook-delete-policy for the test Pod",
+          "type": "string"
         }
       }
     }
