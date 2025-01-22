@@ -128,6 +128,9 @@
         "enabled": {
           "type": "boolean"
         },
+        "ingressClassName": {
+          "type": "string"
+        },
         "labels": {
           "type": "object"
         },
@@ -309,6 +312,9 @@
     "postgresql": {
       "type": "object",
       "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
         "postgresqlUsername": {
           "type": "string"
         },
@@ -331,6 +337,9 @@
           "items": {
             "type": "object"
           }
+        },
+        "enabled": {
+          "type": "boolean"
         }
       }
     },
@@ -354,6 +363,15 @@
         },
         "port": {
           "type": "string"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "enabled": {
+          "type": "boolean"
         }
       }
     },
@@ -377,6 +395,15 @@
         },
         "port": {
           "type": "string"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "enabled": {
+          "type": "boolean"
         }
       }
     },
@@ -599,26 +626,6 @@
         },
         "behavior": {
           "type": "object"
-        }
-      }
-    },
-    "test": {
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "image": {
-          "$ref": "#/definitions/image"
-        },
-        "podSecurityContext": {
-          "type": "object"
-        },
-        "securityContext": {
-          "type": "object"
-        },
-        "deletionPolicy": {
-          "type": "string"
         }
       }
     },
