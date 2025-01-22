@@ -174,12 +174,63 @@
               "hosts": {
                 "type": "array",
                 "items": {
-                  "items": {
+                  "type": "string"
+                }
+              },
+              "secretName": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "console": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "host": {
+                    "type": "string"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string"
+                        },
+                        "pathType": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "ingressClassName": {
+              "type": "string"
+            },
+            "tls": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "hosts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "secretName": {
                     "type": "string"
                   }
-                },
-                "secretName": {
-                  "type": "string"
                 }
               }
             }
@@ -256,19 +307,78 @@
       "type": "object"
     },
     "postgresql": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "postgresqlUsername": {
+          "type": "string"
+        },
+        "postgresqlPassword": {
+          "type": "string"
+        },
+        "postgresqlDatabase": {
+          "type": "string"
+        }
+      }
     },
     "priorityClassName": {
       "type": "string"
     },
     "prometheusRule": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
     },
     "serviceMonitor": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "namespaceSelector": {
+          "type": "object"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "scrapeTimeout": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        }
+      }
     },
     "extraServiceMonitor": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "namespaceSelector": {
+          "type": "object"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "scrapeTimeout": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        }
+      }
     },
     "readinessProbe": {
       "type": "string"
@@ -301,7 +411,15 @@
           "type": "string"
         },
         "tls": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "insecureEdgeTerminationPolicy": {
+              "type": "string"
+            },
+            "termination": {
+              "type": "string"
+            }
+          }
         }
       }
     },
@@ -471,7 +589,10 @@
           "type": "integer"
         },
         "metrics": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
         },
         "behavior": {
           "type": "object"
@@ -492,6 +613,9 @@
         },
         "securityContext": {
           "type": "object"
+        },
+        "deletionPolicy": {
+          "type": "string"
         }
       }
     },
